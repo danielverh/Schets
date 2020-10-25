@@ -31,6 +31,13 @@ namespace SchetsEditor
         }
         public void Teken(Graphics gr)
         {
+            // TODO: Implementeer de TekenObject lijst, en teken elk object opnieuw.
+            /*
+             * foreach(var item in tekenLijst){
+             *  item.Teken(x1, y1, x2, y2);
+             * }
+             */
+            
             gr.DrawImage(bitmap, 0, 0);
         }
         public void Schoon()

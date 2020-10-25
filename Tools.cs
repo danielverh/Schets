@@ -4,6 +4,8 @@ using System.Drawing.Drawing2D;
 
 namespace SchetsEditor
 {
+    // TODO: Alle tools moeten een 'Teken object' toevoegen aan de tekenlijst.
+    // TODO: Tekenobjecten maken
     public interface ISchetsTool
     {
         void MuisVast(SchetsControl s, Point p);
@@ -105,7 +107,7 @@ namespace SchetsEditor
         {   g.FillRectangle(kwast, TweepuntTool.Punten2Rechthoek(p1, p2));
         }
     }
-
+    // TODO: Cirkel tools maken
     public class LijnTool : TweepuntTool
     {
         public override string ToString() { return "lijn"; }
