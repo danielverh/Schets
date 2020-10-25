@@ -18,7 +18,8 @@ namespace SchetsEditor
         protected Brush kwast;
 
         public virtual void MuisVast(SchetsControl s, Point p)
-        {   startpunt = p;
+        {   
+            startpunt = p;
         }
         public virtual void MuisLos(SchetsControl s, Point p)
         {   kwast = new SolidBrush(s.PenKleur);
