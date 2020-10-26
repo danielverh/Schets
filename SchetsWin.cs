@@ -49,6 +49,8 @@ namespace SchetsEditor
                                     , new VolRechthoekTool()
                                     , new TekstTool()
                                     , new GumTool()
+                                    , new CirkelTool()
+                                    , new GevuldeCirkelTool()
                                     };
             String[] deKleuren = { "Black", "Red", "Green", "Blue"
                                  , "Yellow", "Magenta", "Cyan" 
