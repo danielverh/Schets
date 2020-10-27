@@ -34,19 +34,23 @@ namespace SchetsEditor
             // TODO: Implementeer de TekenObject lijst, en teken elk object opnieuw.
             /*
              * foreach(var item in tekenLijst){
-             *  item.Teken(x1, y1, x2, y2);
+             *  item.Teken(gr, x1, y1, x2, y2);
              * }
              */
-            
+
+            // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
             gr.DrawImage(bitmap, 0, 0);
         }
         public void Schoon()
         {
             Graphics gr = Graphics.FromImage(bitmap);
             gr.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
+
+            // TODO: De lijst met TekenObject leegmaken
         }
         public void Roteer()
         {
+            // TODO: Verplaats de items in de TekenObject lijst
             bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
         }
     }
