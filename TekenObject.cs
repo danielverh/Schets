@@ -9,4 +9,9 @@ namespace SchetsEditor
     {
 
     }
+
+    public class TekenObjectLijst : List<TekenObject>
+    {
+
+    }
 }
