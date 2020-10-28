@@ -7,7 +7,8 @@ namespace SchetsEditor
     public class Schets
     {
         private Bitmap bitmap;
-        
+        public List<Shapes> vormen = new List<Shapes>();
+
         public Schets()
         {
             bitmap = new Bitmap(1, 1);
@@ -31,12 +32,11 @@ namespace SchetsEditor
         }
         public void Teken(Graphics gr)
         {
-            // TODO: Implementeer de TekenObject lijst, en teken elk object opnieuw.
-            /*
-             * foreach(var item in tekenLijst){
-             *  item.Teken(gr, x1, y1, x2, y2);
-             * }
-             */
+            foreach (Shapes s in vormen)
+            {
+                s.teken(gr);
+            }
+
 
             // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
             gr.DrawImage(bitmap, 0, 0);

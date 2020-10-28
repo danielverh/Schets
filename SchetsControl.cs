@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 
 namespace SchetsEditor
 {   public class SchetsControl : UserControl
-    {
-        private TekenObjectLijst objecten;
-        private Schets schets;
+    {   private Schets schets;
         private Color penkleur;
 
         public Color PenKleur
@@ -18,9 +15,7 @@ namespace SchetsEditor
         { get { return schets;   }
         }
         public SchetsControl()
-        {   
-            objecten = new TekenObjectLijst();
-            this.BorderStyle = BorderStyle.Fixed3D;
+        {   this.BorderStyle = BorderStyle.Fixed3D;
             this.schets = new Schets();
             this.Paint += this.teken;
             this.Resize += this.veranderAfmeting;
@@ -58,5 +53,10 @@ namespace SchetsEditor
         {   string kleurNaam = ((ToolStripMenuItem)obj).Text;
             penkleur = Color.FromName(kleurNaam);
         }
+
+        public void addshape(Shapes s)
+        {
+            schets.vormen.Add(s);
+        } 
     }
 }

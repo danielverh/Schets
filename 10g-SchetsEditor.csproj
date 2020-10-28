@@ -59,6 +59,7 @@
     <Compile Include="SchetsWin.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Shapes.cs" />
     <Compile Include="TekenObject.cs" />
     <Compile Include="Tools.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
