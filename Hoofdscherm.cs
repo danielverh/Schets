@@ -22,6 +22,7 @@ namespace SchetsEditor
         {   ToolStripDropDownItem menu;
             menu = new ToolStripMenuItem("File");
             menu.DropDownItems.Add("Nieuw", null, this.nieuw);
+            menu.DropDownItems.Add("Open", null, this.open);
             menu.DropDownItems.Add("Exit", null, this.afsluiten);
             menuStrip.Items.Add(menu);
         }
@@ -43,6 +44,15 @@ namespace SchetsEditor
         {   SchetsWin s = new SchetsWin();
             s.MdiParent = this;
             s.Show();
+        }
+        private void open(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Schets bestand (*.sch) | *.sch";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                throw new NotImplementedException();
+            }
         }
         private void afsluiten(object sender, EventArgs e)
         {   this.Close();

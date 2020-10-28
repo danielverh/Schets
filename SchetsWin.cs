@@ -95,9 +95,16 @@ namespace SchetsEditor
         {   
             ToolStripMenuItem menu = new ToolStripMenuItem("File");
             menu.MergeAction = MergeAction.MatchOnly;
+            menu.DropDownItems.Add("Opslaan", null, this.opslaan);
             menu.DropDownItems.Add("Sluiten", null, this.afsluiten);
             menuStrip.Items.Add(menu);
         }
+
+        private void opslaan(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
 
         private void maakToolMenu(ICollection<ISchetsTool> tools)
         {   
@@ -179,5 +186,6 @@ namespace SchetsEditor
             cbb.SelectedIndex = 0;
             paneel.Controls.Add(cbb);
         }
+
     }
 }
