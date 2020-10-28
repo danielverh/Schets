@@ -19,6 +19,7 @@ namespace SchetsEditor
             this.schets = new Schets();
             this.Paint += this.teken;
             this.Resize += this.veranderAfmeting;
+            this.DoubleBuffered = true;
             this.veranderAfmeting(null, null);
         }
         protected override void OnPaintBackground(PaintEventArgs e)
@@ -54,7 +55,7 @@ namespace SchetsEditor
             penkleur = Color.FromName(kleurNaam);
         }
 
-        public void addshape(Shapes s)
+        public void AddShape(Shape s)
         {
             schets.vormen.Add(s);
         } 

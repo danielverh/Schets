@@ -7,7 +7,8 @@ namespace SchetsEditor
     public class Schets
     {
         private Bitmap bitmap;
-        public List<Shapes> vormen = new List<Shapes>();
+        private Size size = new Size(1,1);
+        public List<Shape> vormen = new List<Shape>(); // Lijst om elementen op te slaan.
 
         public Schets()
         {
@@ -19,34 +20,35 @@ namespace SchetsEditor
         }
         public void VeranderAfmeting(Size sz)
         {
-            if (sz.Width > bitmap.Size.Width || sz.Height > bitmap.Size.Height)
-            {
-                Bitmap nieuw = new Bitmap( Math.Max(sz.Width,  bitmap.Size.Width)
-                                         , Math.Max(sz.Height, bitmap.Size.Height)
-                                         );
-                Graphics gr = Graphics.FromImage(nieuw);
-                gr.FillRectangle(Brushes.White, 0, 0, sz.Width, sz.Height);
-                gr.DrawImage(bitmap, 0, 0);
-                bitmap = nieuw;
-            }
+            size = sz;
+            // if (sz.Width > bitmap.Size.Width || sz.Height > bitmap.Size.Height)
+            // {
+            //     Bitmap nieuw = new Bitmap( Math.Max(sz.Width,  bitmap.Size.Width)
+            //                              , Math.Max(sz.Height, bitmap.Size.Height)
+            //                              );
+            //     Graphics gr = Graphics.FromImage(nieuw);
+            //     gr.FillRectangle(Brushes.White, 0, 0, sz.Width, sz.Height);
+            //     gr.DrawImage(bitmap, 0, 0);
+            //     bitmap = nieuw;
+            // }
         }
         public void Teken(Graphics gr)
         {
-            foreach (Shapes s in vormen)
+            gr.FillRectangle(Brushes.White, 0, 0, size.Width, size.Height);
+            foreach (Shape s in vormen) // Alle elementen aflopen en tekenfunctie oproepen.
             {
                 s.teken(gr);
             }
 
 
             // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
-            gr.DrawImage(bitmap, 0, 0);
+            // gr.DrawImage(bitmap, 0, 0);
         }
         public void Schoon()
         {
+            vormen.Clear(); // Lijst leegmaken na schoon. 
             Graphics gr = Graphics.FromImage(bitmap);
             gr.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
-
-            // TODO: De lijst met TekenObject leegmaken
         }
         public void Roteer()
         {
