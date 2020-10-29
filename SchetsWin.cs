@@ -128,8 +128,13 @@ namespace SchetsEditor
         private void maakAktieMenu(String[] kleuren)
         {   
             ToolStripMenuItem menu = new ToolStripMenuItem("Aktie");
-            menu.DropDownItems.Add("Clear", null, schetscontrol.Schoon );
-            menu.DropDownItems.Add("Roteer", null, schetscontrol.Roteer );
+            menu.DropDownItems.Add("Clear", null, schetscontrol.Schoon);
+            menu.DropDownItems.Add(
+                new ToolStripMenuItem("Undo", null, schetscontrol.Undo)
+                    // Voeg shortcut keys toe aan de undo knop
+                    { ShortcutKeys = Keys.Control | Keys.Z, ShowShortcutKeys = true }
+            );
+            menu.DropDownItems.Add("Roteer", null, schetscontrol.Roteer);
             ToolStripMenuItem submenu = new ToolStripMenuItem("Kies kleur");
             foreach (string k in kleuren)
                 submenu.DropDownItems.Add(k, null, schetscontrol.VeranderKleurViaMenu);

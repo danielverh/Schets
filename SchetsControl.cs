@@ -73,5 +73,12 @@ namespace SchetsEditor
                 BestandLader.SchetsOpslaan(dialog.FileName, schets.Grootte, schets.vormen);
             }
         }
+
+        public void Undo(object sender, EventArgs e)
+        {
+            if (schets.vormen.Count > 0)
+                schets.vormen.RemoveAt(schets.vormen.Count - 1);
+            this.Invalidate();
+        }
     }
 }
