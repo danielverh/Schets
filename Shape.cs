@@ -35,7 +35,7 @@ namespace SchetsEditor
     public class RechthoekShape : TweePuntsShape
     {
 
-        public RechthoekShape(Color c, Point p1, Point p2) : base(c, p1, p2){}
+        public RechthoekShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)){}
         public override void teken(Graphics g)
         {
             Pen pen = new Pen(c, PenWidth);
@@ -45,7 +45,7 @@ namespace SchetsEditor
     [Serializable]
     public class CirkelShape : TweePuntsShape
     {
-        public CirkelShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
+        public CirkelShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)) { }
 
         public override void teken(Graphics g)
         {
@@ -57,7 +57,8 @@ namespace SchetsEditor
     [Serializable]
     public class VolRechthoekShape : TweePuntsShape
     {
-        public VolRechthoekShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
+        public VolRechthoekShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)) { }
+
         public override void teken(Graphics g)
         {
             SolidBrush brush = new SolidBrush(c);
@@ -68,7 +69,7 @@ namespace SchetsEditor
     [Serializable]
     public class VolCirkelShape : TweePuntsShape
     {
-        public VolCirkelShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
+        public VolCirkelShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)) { }
 
         public override void teken(Graphics g)
         {
