@@ -105,17 +105,7 @@ namespace SchetsEditor
 
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
-            Point start = p1, size = p2;
-
-            // Zorg dat p1 het punt is met de laagste
-            if (p2.X < p1.X)
-            {
-                start = p2;
-                start.Y -= p2.Y;
-                size.Y += p2.Y;
-            }
-
-            RechthoekShape r = new RechthoekShape(s.PenKleur, p1, p2);
+            RechthoekShape r = new RechthoekShape(s.PenKleur, Punten2Rechthoek(p1, p2));
             s.AddShape(r);
         }
     }
@@ -137,7 +127,7 @@ namespace SchetsEditor
             }
 
             size = new Point(size.X - start.X, size.Y - start.Y);
-            var rechthoek = new VolRechthoekShape(s.PenKleur, p1, p2);
+            var rechthoek = new VolRechthoekShape(s.PenKleur, Punten2Rechthoek(p1, p2));
             s.AddShape(rechthoek);
         }
     }
@@ -153,17 +143,7 @@ namespace SchetsEditor
 
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
-            Point start = p1, size = p2;
-
-            // Zorg dat p1 het punt is met de laagste
-            if (p2.X < p1.X)
-            {
-                start = p2;
-                start.Y -= p2.Y;
-                size.Y += p2.Y;
-            }
-
-            RechthoekShape r = new RechthoekShape(s.PenKleur, p1, p2);
+            RechthoekShape r = new RechthoekShape(s.PenKleur, Punten2Rechthoek(p1, p2));
             s.AddShape(r);
         }
     }
@@ -173,17 +153,7 @@ namespace SchetsEditor
         public override string ToString() { return "gevuldecirkel"; }
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
-            Point start = p1, size = p2;
-
-            // Zorg dat p1 het punt is met de laagste
-            if (p2.X < p1.X)
-            {
-                start = p2;
-                start.Y -= p2.Y;
-                size.Y += p2.Y;
-            }
-
-            VolCirkelShape c = new VolCirkelShape(s.PenKleur, p1, p2);
+            VolCirkelShape c = new VolCirkelShape(s.PenKleur, Punten2Rechthoek(p1, p2));
             s.AddShape(c);
         }
     }
