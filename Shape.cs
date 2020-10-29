@@ -7,6 +7,7 @@ using System.Windows.Forms;
 
 namespace SchetsEditor
 {
+    [Serializable]
     public abstract class Shape
     {
         public static int PenWidth = 4;
@@ -18,7 +19,7 @@ namespace SchetsEditor
         public abstract void teken(Graphics g);
     
     }
-
+    [Serializable]
     public class TweePuntsShape : Shape
     {
         public TweePuntsShape(Color c, Point p1, Point p2)
@@ -30,7 +31,7 @@ namespace SchetsEditor
 
         public override void teken(Graphics g) { }
     }
-  
+    [Serializable]
     public class RechthoekShape : TweePuntsShape
     {
 
@@ -41,7 +42,7 @@ namespace SchetsEditor
             g.DrawRectangle(pen, p1.X, p1.Y, p2.X, p2.Y);
         }
     }
-
+    [Serializable]
     public class CirkelShape : TweePuntsShape
     {
         public CirkelShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
@@ -53,6 +54,7 @@ namespace SchetsEditor
         }
     }
 
+    [Serializable]
     public class VolRechthoekShape : TweePuntsShape
     {
         public VolRechthoekShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
@@ -63,6 +65,7 @@ namespace SchetsEditor
         }
     }
 
+    [Serializable]
     public class VolCirkelShape : TweePuntsShape
     {
         public VolCirkelShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
@@ -75,6 +78,7 @@ namespace SchetsEditor
         }
     }
 
+    [Serializable]
     public class TekstShape : Shape
     {
         private string tekst;
@@ -91,6 +95,7 @@ namespace SchetsEditor
         }
     }
 
+    [Serializable]
     public class LijnShape : TweePuntsShape
     {
         public LijnShape(Color c, Point p1, Point p2) : base(c, p1, p2) { }
