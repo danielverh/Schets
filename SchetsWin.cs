@@ -91,6 +91,11 @@ namespace SchetsEditor
             this.veranderAfmeting(null, null);
         }
 
+        public SchetsWin(BestandLader.BestandObject obj) : this()
+        {
+            schetscontrol.Schets.Grootte = obj.Grootte;
+            schetscontrol.Schets.vormen = obj.ShapesList();
+        }
         private void maakFileMenu()
         {   
             ToolStripMenuItem menu = new ToolStripMenuItem("File");

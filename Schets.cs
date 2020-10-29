@@ -7,8 +7,8 @@ namespace SchetsEditor
     public class Schets
     {
         private Bitmap bitmap;
-        private Size size = new Size(1,1);
         public List<Shape> vormen = new List<Shape>(); // Lijst om elementen op te slaan.
+        public Size Grootte { get; set; } = new Size(1, 1);
 
         public Schets()
         {
@@ -20,7 +20,7 @@ namespace SchetsEditor
         }
         public void VeranderAfmeting(Size sz)
         {
-            size = sz;
+            Grootte = sz;
             // if (sz.Width > bitmap.Size.Width || sz.Height > bitmap.Size.Height)
             // {
             //     Bitmap nieuw = new Bitmap( Math.Max(sz.Width,  bitmap.Size.Width)
@@ -34,12 +34,11 @@ namespace SchetsEditor
         }
         public void Teken(Graphics gr)
         {
-            gr.FillRectangle(Brushes.White, 0, 0, size.Width, size.Height);
+            gr.FillRectangle(Brushes.White, 0, 0, Grootte.Width, Grootte.Height);
             foreach (Shape s in vormen) // Alle elementen aflopen en tekenfunctie oproepen.
             {
                 s.teken(gr);
             }
-
 
             // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
             // gr.DrawImage(bitmap, 0, 0);
@@ -48,7 +47,7 @@ namespace SchetsEditor
         {
             vormen.Clear(); // Lijst leegmaken na schoon. 
             Graphics gr = Graphics.FromImage(bitmap);
-            gr.FillRectangle(Brushes.White, 0, 0, bitmap.Width, bitmap.Height);
+            gr.FillRectangle(Brushes.White, 0, 0, Grootte.Width, Grootte.Height);
         }
         public void Roteer()
         {
