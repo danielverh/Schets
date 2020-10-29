@@ -58,6 +58,20 @@ namespace SchetsEditor
         public void AddShape(Shape s)
         {
             schets.vormen.Add(s);
-        } 
+        }
+
+        public void Opslaan()
+        {
+            if (schets.vormen.Count == 0)
+                return; // Niets doen, de schets is leeg.
+            // Maak een windows explorer 'save' dialoog
+            var dialog = new SaveFileDialog();
+            // Schets bestandstype:
+            dialog.Filter = "Schets bestand (*.sch) | *.sch";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                BestandLader.SchetsOpslaan(dialog.FileName, schets.Grootte, schets.vormen);
+            }
+        }
     }
 }

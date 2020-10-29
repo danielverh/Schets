@@ -102,7 +102,7 @@ namespace SchetsEditor
 
         private void opslaan(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            schetscontrol.Opslaan();
         }
 
 

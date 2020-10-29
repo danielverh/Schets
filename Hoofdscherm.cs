@@ -47,11 +47,19 @@ namespace SchetsEditor
         }
         private void open(object sender, EventArgs e)
         {
+            // Maak een windows explorer dialoog om een bestand te openen
             OpenFileDialog dialog = new OpenFileDialog();
+            // Schets bestandstype:
             dialog.Filter = "Schets bestand (*.sch) | *.sch";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                throw new NotImplementedException();
+                BestandLader.BestandObject obj = BestandLader.LaadSchets(dialog.FileName);
+                if (obj != null)
+                {
+                    SchetsWin s = new SchetsWin(obj);
+                    s.MdiParent = this;
+                    s.Show();
+                }
             }
         }
         private void afsluiten(object sender, EventArgs e)
