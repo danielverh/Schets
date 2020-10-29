@@ -100,7 +100,13 @@ namespace SchetsEditor
         {   
             ToolStripMenuItem menu = new ToolStripMenuItem("File");
             menu.MergeAction = MergeAction.MatchOnly;
-            menu.DropDownItems.Add("Opslaan", null, this.opslaan);
+            menu.DropDownItems.Add(
+                new ToolStripMenuItem("Opslaan", null, this.opslaan)
+                {
+                    // Voeg shortcut keys toe aan de 'opslaan' knop
+                    ShortcutKeys = Keys.Control | Keys.S, ShowShortcutKeys = true
+                }
+                );
             menu.DropDownItems.Add("Sluiten", null, this.afsluiten);
             menuStrip.Items.Add(menu);
         }
