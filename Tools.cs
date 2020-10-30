@@ -172,7 +172,6 @@ namespace SchetsEditor
             
         }
     }
-
     public class PenTool : LijnTool
     {
         public override string ToString() { return "pen"; }

@@ -80,5 +80,7 @@ namespace SchetsEditor
                 schets.vormen.RemoveAt(schets.vormen.Count - 1);
             this.Invalidate();
         }
+
+        
     }
 }

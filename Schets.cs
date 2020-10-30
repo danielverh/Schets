@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SchetsEditor
 {
@@ -43,6 +44,51 @@ namespace SchetsEditor
             // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
             // gr.DrawImage(bitmap, 0, 0);
         }
+
+        // Methode voor de gum in tools om te kijken of op punt muis een object is geraakt
+        public void VerwijderObject(Point p)
+        {
+            for(int t = (vormen.Count - 1); t >= 0; t++)
+            {
+                if (IsGeraakt(vormen[t], p))
+                {
+                    vormen.RemoveAt(t);
+                    // Opnieuw lijst tekenen
+                }
+            }
+        }
+
+        public static bool IsGeraakt(Shape s, Point p)
+        {
+                string res = s.ToString();
+                if (res == "lijn")
+                {
+
+                }
+                if (res == "rechthoek")
+                {
+                return BinnenRechthoek(s, p, 0);
+                }
+                if (res == "tekst")
+                {
+
+                }
+                if (res == "volcrirkel")
+                {
+
+                }
+                if (res == "volrechthoek")
+                {
+
+                }
+                if (res == "cirkel")
+                {
+
+                }
+            return false; 
+        }
+
+
         public void Schoon()
         {
             vormen.Clear(); // Lijst leegmaken na schoon. 
@@ -53,6 +99,11 @@ namespace SchetsEditor
         {
             // TODO: Verplaats de items in de TekenObject lijst
             bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+        }
+
+        public static bool BinnenRechthoek(Shape s, Point p, int offset)
+        {
+            return (p.X > s.p1.X + offset && p.X < s.p2.X - offset && p.Y > s.p1.Y + offset && p.Y < s.p2.Y - offset);
         }
     }
 }
