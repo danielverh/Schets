@@ -143,8 +143,8 @@ namespace SchetsEditor
 
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
-            RechthoekShape r = new RechthoekShape(s.PenKleur, Punten2Rechthoek(p1, p2));
-            s.AddShape(r);
+            var c = new CirkelShape(s.PenKleur, Punten2Rechthoek(p1, p2));
+            s.AddShape(c);
         }
     }
 
@@ -169,7 +169,7 @@ namespace SchetsEditor
 
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
-            
+            s.AddShape(new LijnShape(s.PenKleur, p1, p2));
         }
     }
     public class PenTool : LijnTool
@@ -183,13 +183,26 @@ namespace SchetsEditor
         }
     }
 
-    public class GumTool : PenTool
+    public class GumTool : StartpuntTool
     {
         public override string ToString() { return "gum"; }
 
-        public override void Bezig(Graphics g, Point p1, Point p2)
+        //public override void Bezig(Graphics g, Point p1, Point p2)
+        //{
+        //    g.DrawLine(MaakPen(Brushes.White, 7), p1, p2);
+        //}
+
+        public override void MuisLos(SchetsControl s, Point p)
         {
-            g.DrawLine(MaakPen(Brushes.White, 7), p1, p2);
+            s.Schets.VerwijderObject(p, s);
+        }
+
+        public override void MuisDrag(SchetsControl s, Point p)
+        {
+        }
+
+        public override void Letter(SchetsControl s, char c)
+        {
         }
     }
 }

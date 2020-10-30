@@ -15,7 +15,6 @@ namespace SchetsEditor
 
         public Point p1;
         public Point p2;
-
         public abstract void teken(Graphics g);
     
     }
@@ -134,7 +133,7 @@ namespace SchetsEditor
         public override void teken(Graphics g)
         {
             Pen pen = new Pen(c, PenWidth);
-            g.DrawEllipse(pen, p1.X, p1.Y, p2.X, p2.Y);
+            g.DrawLine(pen, p1.X, p1.Y, p2.X, p2.Y);
         }
 
         public override string ToString()
