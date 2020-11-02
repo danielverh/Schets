@@ -16,7 +16,7 @@ namespace SchetsEditor
         public Point p1;
         public Point p2;
         public abstract void teken(Graphics g);
-    
+
     }
     [Serializable]
     public class TweePuntsShape : Shape
@@ -34,7 +34,7 @@ namespace SchetsEditor
     public class RechthoekShape : TweePuntsShape
     {
 
-        public RechthoekShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)){}
+        public RechthoekShape(Color c, Rectangle rect) : base(c, rect.Location, new Point(rect.Width, rect.Height)) { }
         public override void teken(Graphics g)
         {
             Pen pen = new Pen(c, PenWidth);
@@ -108,6 +108,7 @@ namespace SchetsEditor
         public Font Font { get; }
         public string Tekst { get; set; }
         public SizeF Size { get; private set; }
+        public int Hoek { get; set; }
         public TekstShape(Color c, Point p1, string _tekst)
         {
             Font = new Font("Tahoma", 40);
@@ -119,8 +120,19 @@ namespace SchetsEditor
         public override void teken(Graphics g)
         {
             Size = g.MeasureString(Tekst, Font, p1, StringFormat.GenericTypographic);
-            g.DrawString(Tekst, Font, new SolidBrush(c), p1.X, p1.Y);
+            var bmp = new Bitmap((int)Math.Ceiling(Size.Width), (int)Math.Ceiling(Size.Height));
+            var g2 = Graphics.FromImage(bmp);
 
+            switch (Hoek)
+            {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+            }
+            g2.DrawString(Tekst, Font, new SolidBrush(c), p1.X, p1.Y);
         }
 
         public override string ToString()

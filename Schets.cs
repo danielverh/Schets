@@ -90,6 +90,30 @@ namespace SchetsEditor
 
         public void Roteer()
         {
+            foreach (var shape in vormen)
+            {
+                if (shape is TekstShape ts)
+                {
+                    if (ts.Hoek == 3)
+                        ts.Hoek = 0;
+                    else
+                        ts.Hoek++;
+
+                }
+
+                int x1  = shape.p1.X - Grootte.Width / 2;
+                int y1 = shape.p1.Y - Grootte.Height / 2;
+
+                Point nieuw = new Point(-y1, x1);
+
+                int x2 = -y1 + Grootte.Width / 2;
+                int y2 = x1 + Grootte.Height / 2;
+
+                shape.p1.X = x2;
+                shape.p1.Y = y2;
+
+            }
+
             // TODO: Verplaats de items in de TekenObject lijst
             // bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
@@ -193,7 +217,7 @@ namespace SchetsEditor
                 Color pixel = bmp.GetPixel(x, y);
                 return pixel.A == 255 && pixel.R == 0 && pixel.G == 0 && pixel.B == 0;
             }
-            return  false;
+            return false;
         }
     }
 }
