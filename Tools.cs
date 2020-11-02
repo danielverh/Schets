@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 
 namespace SchetsEditor
 {
@@ -35,21 +36,33 @@ namespace SchetsEditor
         public override string ToString() { return "tekst"; }
 
         public override void MuisDrag(SchetsControl s, Point p) { }
+        public override void MuisVast(SchetsControl s, Point p)
+        {
+            base.MuisVast(s, p);
+            s.AddShape(new TekstShape(s.PenKleur, startpunt, tekst));
+        }
 
         public override void Letter(SchetsControl s, char c)
         {
             if (c >= 32)
             {
-                tekst += c;
+                // Als er een geldig tekstShape object boven aan de vormen lijst staat, bewerk dan de tekst.
+                if (s.Schets.vormen.Last() is TekstShape tekstShape)
+                {
+                    tekstShape.Tekst += c;
+                    s.Invalidate();
+                }
 
-                Graphics gr = s.MaakBitmapGraphics();
-                Font font = new Font("Tahoma", 40);
-                string _tekst = c.ToString();
-                SizeF sz = gr.MeasureString(tekst, font, this.startpunt, StringFormat.GenericTypographic);
-                gr.DrawString(tekst, font, kwast, this.startpunt, StringFormat.GenericTypographic);
-                // gr.DrawRectangle(Pens.Black, startpunt.X, startpunt.Y, sz.Width, sz.Height);
-                startpunt.X += (int)sz.Width;
-                s.Invalidate();
+                // tekst += c;
+                //
+                // Graphics gr = s.MaakBitmapGraphics();
+                // Font font = new Font("Tahoma", 40);
+                // string _tekst = c.ToString();
+                // SizeF sz = gr.MeasureString(tekst, font, this.startpunt, StringFormat.GenericTypographic);
+                // gr.DrawString(tekst, font, kwast, this.startpunt, StringFormat.GenericTypographic);
+                // // gr.DrawRectangle(Pens.Black, startpunt.X, startpunt.Y, sz.Width, sz.Height);
+                // startpunt.X += (int)sz.Width;
+                // s.Invalidate();
             }
         }
     }

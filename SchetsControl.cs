@@ -32,11 +32,6 @@ namespace SchetsEditor
         {   schets.VeranderAfmeting(this.ClientSize);
             this.Invalidate();
         }
-        public Graphics MaakBitmapGraphics()
-        {   Graphics g = schets.BitmapGraphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-            return g;
-        }
         public void Schoon(object o, EventArgs ea)
         {   schets.Schoon();
             this.Invalidate();

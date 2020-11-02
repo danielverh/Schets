@@ -105,17 +105,22 @@ namespace SchetsEditor
     [Serializable]
     public class TekstShape : Shape
     {
-        private string tekst;
+        public Font Font { get; }
+        public string Tekst { get; set; }
+        public SizeF Size { get; private set; }
         public TekstShape(Color c, Point p1, string _tekst)
         {
+            Font = new Font("Tahoma", 40);
             this.c = c;
             this.p1 = p1;
-            this.tekst = _tekst;
+            this.Tekst = _tekst;
         }
 
         public override void teken(Graphics g)
         {
-            g.DrawString("tekst", new Font("Tahoma", 40), new SolidBrush(c), p1.X, p1.Y);
+            Size = g.MeasureString(Tekst, Font, p1, StringFormat.GenericTypographic);
+            g.DrawString(Tekst, Font, new SolidBrush(c), p1.X, p1.Y);
+
         }
 
         public override string ToString()

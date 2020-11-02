@@ -7,19 +7,12 @@ namespace SchetsEditor
 {
     public class Schets
     {
-        private Bitmap bitmap;
         public List<Shape> vormen = new List<Shape>(); // Lijst om elementen op te slaan.
         public Size Grootte { get; set; } = new Size(1, 1);
         private const int offset = 10;
 
         public Schets()
         {
-            bitmap = new Bitmap(1, 1);
-        }
-
-        public Graphics BitmapGraphics
-        {
-            get { return Graphics.FromImage(bitmap); }
         }
 
         public void VeranderAfmeting(Size sz)
@@ -44,9 +37,6 @@ namespace SchetsEditor
             {
                 s.teken(gr);
             }
-
-            // TODO: gr.DrawImage... kan weg zodra de functie hierboven is geïmplementeerd.
-            // gr.DrawImage(bitmap, 0, 0);
         }
 
         // Methode voor de gum in tools om te kijken of op punt muis een object is geraakt
@@ -73,8 +63,9 @@ namespace SchetsEditor
             {
                 return BinnenRechthoek(s, p, offset);
             }
-            else if (s is TekstShape)
+            else if (s is TekstShape ts)
             {
+                return BinnenFont(p, ts);
             }
             else if (s is VolRechthoekShape)
             {
@@ -82,11 +73,11 @@ namespace SchetsEditor
             }
             else if (s is CirkelShape)
             {
-                return BinnenGevuldeCirkel(p, s);
+                return BinnenCirkel(p, s);
             }
             else if (s is VolCirkelShape)
             {
-                return BinnenCirkel(p, s);
+                return BinnenGevuldeCirkel(p, s);
             }
             return false;
         }
@@ -94,15 +85,14 @@ namespace SchetsEditor
 
         public void Schoon()
         {
-            vormen.Clear(); // Lijst leegmaken na schoon. 
-            Graphics gr = Graphics.FromImage(bitmap);
-            gr.FillRectangle(Brushes.White, 0, 0, Grootte.Width, Grootte.Height);
+            vormen.Clear(); // Lijst leegmaken na schoon.
         }
 
         public void Roteer()
         {
             // TODO: Verplaats de items in de TekenObject lijst
-            bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            // bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
         }
 
         private bool BinnenVolRechthoek(Shape s, Point p)
@@ -187,6 +177,23 @@ namespace SchetsEditor
             + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
 
             return res < 1.2 && res > 0.9;
+        }
+
+        private bool BinnenFont(Point p, TekstShape ts)
+        {
+            // Gebruik Math.Ceiling om de kleinst mogelijke int groter dan ts.Size.Width/Height te verkrijgen:
+            // Maak een bitmap object waar de string precies inpast.
+            var bmp = new Bitmap((int)Math.Ceiling(ts.Size.Width), (int)Math.Ceiling(ts.Size.Height));
+            var gr = Graphics.FromImage(bmp);
+            gr.DrawString(ts.Tekst, ts.Font, Brushes.Black, Point.Empty);
+            int x = p.X - ts.p1.X,
+                y = p.Y - ts.p1.Y;
+            if ((x > 0 && x < bmp.Width && y > 0 && y < bmp.Height))
+            {
+                Color pixel = bmp.GetPixel(x, y);
+                return pixel.A == 255 && pixel.R == 0 && pixel.G == 0 && pixel.B == 0;
+            }
+            return  false;
         }
     }
 }
