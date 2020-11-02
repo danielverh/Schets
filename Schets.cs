@@ -82,7 +82,7 @@ namespace SchetsEditor
             }
             else if (s is CirkelShape)
             {
-                BinnenGevuldeCirkel(p, s);
+                return BinnenGevuldeCirkel(p, s);
             }
             else if (s is VolCirkelShape)
             {
@@ -163,7 +163,7 @@ namespace SchetsEditor
             return Math.Sqrt(Math.Pow(p.X - resx, 2) + Math.Pow(p.Y - resy, 2));
         }
 
-        private bool BinnenCirkel(Point p, Shape s)
+        private bool BinnenGevuldeCirkel(Point p, Shape s)
         {
             double straalx = (double)s.p2.X / 2.0;
             double straaly = (double)s.p2.Y / 2.0;
@@ -176,8 +176,7 @@ namespace SchetsEditor
             return res <= 1;
         }
 
-        //Werkt, maar true zorgt niet dat ie verwijdert wordt!
-        private bool BinnenGevuldeCirkel(Point p, Shape s)
+        private bool BinnenCirkel(Point p, Shape s)
         {
             double straalx = (double)s.p2.X / 2.0;
             double straaly = (double)s.p2.Y / 2.0;
