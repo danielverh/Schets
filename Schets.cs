@@ -82,11 +82,12 @@ namespace SchetsEditor
             }
             else if (s is CirkelShape)
             {
+                BinnenGevuldeCirkel(p, s);
             }
             else if (s is VolCirkelShape)
             {
+                return BinnenCirkel(p, s);
             }
-
             return false;
         }
 
@@ -137,39 +138,70 @@ namespace SchetsEditor
                 ;
         }
 
-        private bool AfstandVulCirkel(Shape cirkel, Point p)
-        {
-            return BinnenVolRechthoek(cirkel, p);
-        }
-
         private double AfstandTotLijn(Point eerste, Point tweede, Point p)
         {
-            double xx, yy;
-
+            double resx, resy;
             double dx = tweede.X - eerste.X;
             double dy = tweede.Y - eerste.Y;
-
-
             double res = ((p.X - eerste.X) * dx + (p.Y - eerste.Y) * dy) / (dx * dx + dy * dy);
 
             if (res < 0)
             {
-                xx = eerste.X;
-                yy = eerste.Y;
+                resx = eerste.X;
+                resy = eerste.Y;
             }
             else if (res > 1)
             {
-                xx = tweede.X;
-                yy = tweede.Y;
+                resx = tweede.X;
+                resy = tweede.Y;
             }
-
             else // [0, 1]
             {
-                xx = eerste.X + res * dx;
-                yy = eerste.Y + res * dy;
+                resx = eerste.X + res * dx;
+                resy = eerste.Y + res * dy;
             }
+            return Math.Sqrt(Math.Pow(p.X - resx, 2) + Math.Pow(p.Y - resy, 2));
+        }
 
-            return Math.Sqrt(Math.Pow(p.X - xx, 2) + Math.Pow(p.Y - yy, 2));
+        private bool BinnenCirkel(Point p, Shape s)
+        {
+            double straalx = (double)s.p2.X / 2.0;
+            double straaly = (double)s.p2.Y / 2.0;
+            double m1 = (double)s.p1.X + straalx;
+            double m2 = (double)s.p1.Y + straaly;
+
+                double res = ((Math.Pow(((double)p.X - m1), 2.0) / Math.Pow(straalx, 2.0))
+                + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
+
+                if(res <= 1)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+        }
+
+        //Werkt, maar true zorgt niet dat ie verwijdert wordt!
+        private bool BinnenGevuldeCirkel(Point p, Shape s)
+        {
+            double straalx = (double)s.p2.X / 2.0;
+            double straaly = (double)s.p2.Y / 2.0;
+            double m1 = (double)s.p1.X + straalx;
+            double m2 = (double)s.p1.Y + straaly;
+
+            double res = ((Math.Pow(((double)p.X - m1), 2.0) / Math.Pow(straalx, 2.0))
+            + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
+
+            if (res < 1.2 && res > 0.9)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
