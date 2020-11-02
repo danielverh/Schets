@@ -118,23 +118,23 @@ namespace SchetsEditor
         {
             var x = s.p1.X;
             var y = s.p1.Y;
-            return 
+            return
                 // Check de linker rand
                 (p.X > x - offset &&
                 p.X < x + offset) ||
-                
+
                 // Check de rechter rand
                 (p.X > x + s.p2.X - offset &&
                 p.X < x + s.p2.X + offset) ||
-                
+
                 // Check de bovenrand
                 (p.Y > y - offset &&
                 p.Y < y + offset) ||
-                
+
                 // Check de onderrand
                 (p.Y > y + s.p2.Y - offset &&
                 p.Y < y + s.p2.Y + offset)
-                
+
                 ;
         }
 
@@ -170,17 +170,10 @@ namespace SchetsEditor
             double m1 = (double)s.p1.X + straalx;
             double m2 = (double)s.p1.Y + straaly;
 
-                double res = ((Math.Pow(((double)p.X - m1), 2.0) / Math.Pow(straalx, 2.0))
-                + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
+            double res = ((Math.Pow(((double)p.X - m1), 2.0) / Math.Pow(straalx, 2.0))
+            + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
 
-                if(res <= 1)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+            return res <= 1;
         }
 
         //Werkt, maar true zorgt niet dat ie verwijdert wordt!
@@ -194,14 +187,7 @@ namespace SchetsEditor
             double res = ((Math.Pow(((double)p.X - m1), 2.0) / Math.Pow(straalx, 2.0))
             + (Math.Pow(((double)p.Y - m2), 2.0) / Math.Pow(straaly, 2.0)));
 
-            if (res < 1.2 && res > 0.9)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return res < 1.2 && res > 0.9;
         }
     }
 }
