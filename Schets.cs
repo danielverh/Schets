@@ -10,6 +10,7 @@ namespace SchetsEditor
         public List<Shape> vormen = new List<Shape>(); // Lijst om elementen op te slaan.
         public Size Grootte { get; set; } = new Size(1, 1);
         private const int offset = 10;
+        private int count = 0;
 
         public Schets()
         {
@@ -92,6 +93,8 @@ namespace SchetsEditor
         {
             foreach (var shape in vormen)
             {
+
+
                 if (shape is TekstShape ts)
                 {
                     if (ts.Hoek == 3)
@@ -101,10 +104,9 @@ namespace SchetsEditor
 
                 }
 
-                int x1  = shape.p1.X - Grootte.Width / 2;
+                //Code werkt wel, maar er komt een zwarte balk
+                int x1 = shape.p1.X - Grootte.Width / 2;
                 int y1 = shape.p1.Y - Grootte.Height / 2;
-
-                Point nieuw = new Point(-y1, x1);
 
                 int x2 = -y1 + Grootte.Width / 2;
                 int y2 = x1 + Grootte.Height / 2;
@@ -116,7 +118,6 @@ namespace SchetsEditor
 
             // TODO: Verplaats de items in de TekenObject lijst
             // bitmap.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
         }
 
         private bool BinnenVolRechthoek(Shape s, Point p)
