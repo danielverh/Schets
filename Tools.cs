@@ -149,7 +149,7 @@ namespace SchetsEditor
 
     public class CirkelTool : TweepuntTool
     {
-        public override string ToString() { return "cirkel"; }
+        public override string ToString() { return "rondje"; }
 
         public override void Bezig(Graphics g, Point p1, Point p2)
         {
@@ -165,7 +165,7 @@ namespace SchetsEditor
 
     public class GevuldeCirkelTool : CirkelTool
     {
-        public override string ToString() { return "gevuldecirkel"; }
+        public override string ToString() { return "cirkel"; }
         public override void Compleet(SchetsControl s, Point p1, Point p2)
         {
             VolCirkelShape c = new VolCirkelShape(s.PenKleur, Punten2Rechthoek(p1, p2));
