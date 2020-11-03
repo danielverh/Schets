@@ -23,7 +23,7 @@ namespace SchetsEditor
             {
                 try
                 {
-                    data = (BestandObject)bf.Deserialize(stream);
+                    data = (BestandObject) bf.Deserialize(stream);
                 }
                 catch (Exception)
                 {
@@ -33,6 +33,7 @@ namespace SchetsEditor
 
             return data;
         }
+
         /// <summary>
         /// Gebruik een binary formatter om een object met de data van de afbeelding te serializeren.
         /// </summary>
@@ -53,6 +54,7 @@ namespace SchetsEditor
             public Size Grootte { get; }
             public List<Shape> ShapesList() => shapes.ToList();
             private Shape[] shapes;
+
             public BestandObject(Size _grootte, List<Shape> _shapes)
             {
                 Grootte = _grootte;

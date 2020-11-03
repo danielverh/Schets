@@ -47,7 +47,7 @@ namespace SchetsEditor
             if (c >= 32)
             {
                 // Als er een geldig tekstShape object boven aan de vormen lijst staat, bewerk dan de tekst.
-                if (s.Schets.vormen.Last() is TekstShape tekstShape)
+                if (s.Schets.Vormen.Last() is TekstShape tekstShape)
                 {
                     tekstShape.Tekst += c;
                     s.Invalidate();

@@ -10,21 +10,15 @@ namespace SchetsEditor
         private Schets schets;
         private Color penkleur;
 
-        public Color PenKleur
-        {
-            get { return penkleur; }
-        }
+        public Color PenKleur => penkleur;
 
-        public Schets Schets
-        {
-            get { return schets; }
-        }
+        public Schets Schets => schets;
 
         public SchetsControl()
         {
             this.BorderStyle = BorderStyle.Fixed3D;
             this.schets = new Schets();
-            this.Paint += this.teken;
+            this.Paint += this.Teken;
             this.Resize += this.veranderAfmeting;
             this.DoubleBuffered = true;
             this.veranderAfmeting(null, null);
@@ -34,7 +28,7 @@ namespace SchetsEditor
         {
         }
 
-        private void teken(object o, PaintEventArgs pea)
+        private void Teken(object o, PaintEventArgs pea)
         {
             schets.Teken(pea.Graphics);
         }
@@ -72,12 +66,12 @@ namespace SchetsEditor
 
         public void AddShape(Shape s)
         {
-            schets.vormen.Add(s);
+            schets.Vormen.Add(s);
         }
 
         public void Opslaan()
         {
-            if (schets.vormen.Count == 0)
+            if (schets.Vormen.Count == 0)
                 return; // Niets doen, de schets is leeg.
             // Maak een windows explorer 'save' dialoog
             var dialog = new SaveFileDialog();
@@ -85,14 +79,14 @@ namespace SchetsEditor
             dialog.Filter = "Schets bestand (*.sch) | *.sch";
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                BestandLader.SchetsOpslaan(dialog.FileName, schets.Grootte, schets.vormen);
+                BestandLader.SchetsOpslaan(dialog.FileName, schets.Grootte, schets.Vormen);
             }
         }
 
         public void Undo(object sender, EventArgs e)
         {
-            if (schets.vormen.Count > 0)
-                schets.vormen.RemoveAt(schets.vormen.Count - 1);
+            if (schets.Vormen.Count > 0)
+                schets.Vormen.RemoveAt(schets.Vormen.Count - 1);
             this.Invalidate();
         }
     }
