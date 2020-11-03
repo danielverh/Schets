@@ -54,6 +54,7 @@ namespace SchetsEditor
 
         public override void teken(Graphics g)
         {
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             Pen pen = new Pen(c, PenWidth);
             g.DrawEllipse(pen, p1.X, p1.Y, p2.X, p2.Y);
         }
@@ -90,6 +91,7 @@ namespace SchetsEditor
 
         public override void teken(Graphics g)
         {
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             SolidBrush brush = new SolidBrush(c);
             g.FillEllipse(brush, p1.X, p1.Y, p2.X, p2.Y);
 
@@ -149,6 +151,7 @@ namespace SchetsEditor
 
         public override void teken(Graphics g)
         {
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             Pen pen = new Pen(c, PenWidth);
             g.DrawLine(pen, p1.X, p1.Y, p2.X, p2.Y);
         }

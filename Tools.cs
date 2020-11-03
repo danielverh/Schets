@@ -53,14 +53,16 @@ namespace SchetsEditor
                     s.Invalidate();
                 }
 
+                
+
                 // tekst += c;
-                //
+                ////
                 // Graphics gr = s.MaakBitmapGraphics();
                 // Font font = new Font("Tahoma", 40);
                 // string _tekst = c.ToString();
                 // SizeF sz = gr.MeasureString(tekst, font, this.startpunt, StringFormat.GenericTypographic);
                 // gr.DrawString(tekst, font, kwast, this.startpunt, StringFormat.GenericTypographic);
-                // // gr.DrawRectangle(Pens.Black, startpunt.X, startpunt.Y, sz.Width, sz.Height);
+                //  gr.DrawRectangle(Pens.Black, startpunt.X, startpunt.Y, sz.Width, sz.Height);
                 // startpunt.X += (int)sz.Width;
                 // s.Invalidate();
             }
