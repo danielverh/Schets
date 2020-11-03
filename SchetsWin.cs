@@ -145,6 +145,11 @@ namespace SchetsEditor
                     // Voeg shortcut keys toe aan de undo knop
                     {ShortcutKeys = Keys.Control | Keys.Z, ShowShortcutKeys = true}
             );
+            menu.DropDownItems.Add(
+                new ToolStripMenuItem("Redo", null, schetscontrol.Redo)
+                    // Voeg shortcut keys toe aan de undo knop
+                    { ShortcutKeys = Keys.Control | Keys.R, ShowShortcutKeys = true }
+            );
             menu.DropDownItems.Add("Roteer", null, schetscontrol.Roteer);
             ToolStripMenuItem submenu = new ToolStripMenuItem("Kies kleur");
             foreach (string k in kleuren)

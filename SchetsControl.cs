@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace SchetsEditor
@@ -54,13 +55,13 @@ namespace SchetsEditor
 
         public void VeranderKleur(object obj, EventArgs ea)
         {
-            string kleurNaam = ((ComboBox) obj).Text;
+            string kleurNaam = ((ComboBox)obj).Text;
             penkleur = Color.FromName(kleurNaam);
         }
 
         public void VeranderKleurViaMenu(object obj, EventArgs ea)
         {
-            string kleurNaam = ((ToolStripMenuItem) obj).Text;
+            string kleurNaam = ((ToolStripMenuItem)obj).Text;
             penkleur = Color.FromName(kleurNaam);
         }
 
@@ -86,8 +87,21 @@ namespace SchetsEditor
         public void Undo(object sender, EventArgs e)
         {
             if (schets.Vormen.Count > 0)
+            {
+                schets.Redos.Push(schets.Vormen.Last());
                 schets.Vormen.RemoveAt(schets.Vormen.Count - 1);
-            this.Invalidate();
+
+                this.Invalidate();
+            }
+        }
+
+        public void Redo(object sender, EventArgs e)
+        {
+            if (schets.Redos.Count > 0)
+            {
+                schets.Vormen.Add(schets.Redos.Pop());
+                this.Invalidate();
+            }
         }
     }
 }
